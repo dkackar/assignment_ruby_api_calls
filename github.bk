@@ -1,0 +1,29 @@
+require 'github_api'
+require 'json'
+require 'pp'
+require_relative 'github_parser.rb'
+
+class GithubHttps
+
+  API_KEY = ENV["GITHUB_API_KEY"]
+  
+  attr_reader :github, :parser
+
+  def initialize(user=nil,repo=nil)
+    @user = user
+    @repo = repo
+    @github = Github.new oauth_token: API_KEY
+    @parser = GithubParser.new(@github)
+  end
+
+  def parse_git
+    pp @parser.list_git
+
+  end
+
+end
+
+git = GithubHttps.new
+git.parse_git
+
+

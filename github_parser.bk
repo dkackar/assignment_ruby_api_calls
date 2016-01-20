@@ -1,0 +1,21 @@
+require 'github_api'
+require 'json'
+require 'pp'
+
+class GithubParser
+  
+  attr_reader :github 
+
+  def initialize(github)
+    @github = github
+  end
+
+  def list_git(user=nil,repo=nil)
+
+    response = @github.repos.list user: 'alokpradhan'
+    commit = @github.repos.commits.list 'alokpradhan', '134141414kjkjfksjafsakfjl'
+    commit[0]
+  end
+  
+
+end
